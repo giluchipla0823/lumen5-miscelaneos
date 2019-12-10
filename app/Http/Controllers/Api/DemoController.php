@@ -23,6 +23,7 @@ class DemoController extends ApiController
      * Display a listing of the resource.
      *
      * @return JsonResponse
+     * @throws \Exception
      */
     public function index()
     {
