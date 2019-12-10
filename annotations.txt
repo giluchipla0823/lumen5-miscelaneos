@@ -1,0 +1,12 @@
+# Lumen generators
+composer require flipbox/lumen-generator
+
+# Implicit models
+https://github.com/mmghv/lumen-route-binding#2-implicit-binding
+
+# Form request
+composer require urameshibr/lumen-form-request
+
+# Datatables
+composer require "yajra/laravel-datatables-oracle"
+composer require "yajra/laravel-datatables-fractal"
