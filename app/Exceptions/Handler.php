@@ -54,15 +54,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        dd($exception);
-        exit();
-
         if (config('app.debug')) {
             return parent::render($request, $exception);
         }
 
         if($exception instanceof ValidationException){
-
             return $this->convertValidationExceptionToResponse($exception, $request);
         }
 
@@ -134,9 +130,9 @@ class Handler extends ExceptionHandler
         }
 
         if ($exception instanceof TokenMismatchException) {
-            dd($exception);
+            dd('TokenMismatchException', $exception);
         }
-
+        
         return $this->errorResponse(
             'Falla inesperada. Intente luego',
             Response::HTTP_INTERNAL_SERVER_ERROR
