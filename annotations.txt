@@ -10,3 +10,29 @@ composer require urameshibr/lumen-form-request
 # Datatables
 composer require "yajra/laravel-datatables-oracle"
 composer require "yajra/laravel-datatables-fractal"
+
+# Instalar Passport
+composer require dusterio/lumen-passport
+
+# Lumen - Passport
+- Habilitar los siguientes providers en bootstrap/app.php
+
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(Laravel\Passport\PassportServiceProvider::class);
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+
+# Ejecutar nuevas migraciones
+php artisan migrate
+
+# Instalar passport
+php artisan passport:install
+
+# Personal access client
+Personal access client created successfully.
+Client ID: 1
+Client secret: F0czEX1TlntC4KYQPGtLZUZKTwuDFVSyGnaXyix4
+Password grant client created successfully.
+Client ID: 2
+Client secret: WpsQbyVbILgoCqVnmMUpOhMvvr82OcQsGAhipruI
+
+

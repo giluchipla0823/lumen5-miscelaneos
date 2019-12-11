@@ -20,6 +20,7 @@ $router->get('/', function () use ($router) {
 
 // Demo
 $router->get('/api/demo', 'Api\DemoController@index');
+$router->get('/api/demo/{category}', 'Api\DemoController@show');
 $router->post('/api/demo', 'Api\DemoController@store');
 
 // Categories

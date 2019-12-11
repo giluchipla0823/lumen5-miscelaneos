@@ -55,18 +55,14 @@ $app->singleton(
 | route or middleware that'll be assigned to some specific routes.
 |
 */
-
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
-
 $app->middleware([
-    App\Http\Middleware\CorsMiddleware::class
+    Vluzrmos\LumenCors\CorsMiddleware::class
 ]);
 
-// $app->routeMiddleware([
+ $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+     'client.credentials' => Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
+ ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +87,11 @@ $app->register(Urameshibr\Providers\FormRequestServiceProvider::class);
 // Datatables
 $app->register(Yajra\DataTables\DataTablesServiceProvider::class);
 $app->register(Yajra\DataTables\FractalServiceProvider::class);
+
+// Passport
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(Laravel\Passport\PassportServiceProvider::class);
+$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
 
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);

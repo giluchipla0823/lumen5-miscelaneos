@@ -2,7 +2,9 @@
 namespace App\Traits;
 
 use App\Libraries\Api;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection;
 use Symfony\Component\HttpFoundation\Response;
 
 Trait ApiResponse{
@@ -22,6 +24,34 @@ Trait ApiResponse{
         }
 
         return $this->makeResponse($data, $message, $code, Api::CODE_SUCCESS);
+    }
+
+    /**
+     * Crear respuesta para colecciones de eloquent
+     *
+     * @param Collection $collection
+     * @return JsonResponse
+     */
+    protected function showAll(Collection $collection){
+        if(app('request')->get('listFormat') === 'datatables'){
+            $collection = $this->transformDatatables($collection);
+        }else{
+            $collection = $this->transformCollection($collection);
+        }
+
+        return $this->successResponse($collection);
+    }
+
+    /**
+     * Crear respuesta para instancias de modelos de eloquent
+     *
+     * @param Model $instance
+     * @return JsonResponse
+     */
+    protected function showOne(Model $instance){
+        $instance = $this->transformInstance($instance);
+
+        return $this->successResponse($instance);
     }
 
     /**

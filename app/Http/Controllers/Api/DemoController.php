@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\DatatablesHelper;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Yajra\DataTables\DataTables;
 
 class DemoController extends ApiController
 {
@@ -27,18 +26,14 @@ class DemoController extends ApiController
      */
     public function index()
     {
-        $collection = collect([
+        $data = collect([
             [
                 'id' => 1,
                 'name' => 'Gino Luiggi'
-            ],
-            [
-                'id' => 2,
-                'name' => 'Juan Carlos'
             ]
         ]);
 
-        $json = DataTables::of($collection)->make();
+        $json = \datatables()->collection($data)->toJson();
 
         return $this->successResponse(DatatablesHelper::makeResponse($json));
     }
